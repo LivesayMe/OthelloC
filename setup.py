@@ -7,10 +7,10 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='othelloc',
-    version='0.2.1',
-    packages=['othello'],
+    version='0.2.2',
+    packages=['othelloc'],
     package_data={
-        'othello': ['*.so'],
+        'othelloc': ['*.so'],
     },
     include_package_data=True,
     description='C library for Othello game',
