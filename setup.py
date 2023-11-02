@@ -1,8 +1,13 @@
 from setuptools import find_packages, setup, Extension
 
+# read the contents of your README file
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 setup(
     name='othelloc',
-    version='0.2.0',
+    version='0.2.1',
     packages=['othello'],
     package_data={
         'othello': ['*.so'],
@@ -11,4 +16,6 @@ setup(
     description='C library for Othello game',
     author='Hunter Livesay',
     license='MIT',
+    long_description=long_description,
+    long_description_content_type='text/markdown'
 )
