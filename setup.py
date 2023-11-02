@@ -2,7 +2,7 @@ from setuptools import find_packages, setup, Extension
 
 setup(
     name='othelloc',
-    version='0.1.0',
+    version='0.2.0',
     packages=['othello'],
     package_data={
         'othello': ['*.so'],
