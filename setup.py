@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='othelloc',
-    version='0.2.2',
+    version='0.2.3',
     packages=['othelloc'],
     package_data={
         'othelloc': ['*.so'],

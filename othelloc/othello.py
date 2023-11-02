@@ -36,7 +36,7 @@ import os
 
 class Othello:
 
-    def __init__(self):
+    def __init__(self) -> None:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         library_file = os.path.join(current_dir, "othello.so")
         self.lib = ctypes.cdll.LoadLibrary(library_file)
@@ -52,16 +52,16 @@ class Othello:
         self.board = self.get_starting_board()
         self.cur_player = -1
 
-    def get_starting_board(self):
+    def get_starting_board(self) -> list:
         return self.lib.get_starting_board()
     
-    def copy(self):
+    def copy(self) -> object:
         ng = Othello()
         ng.board = self.lib.get_board_copy(self.board)
         ng.cur_player = self.cur_player
         return ng
 
-    def make_move(self, player, move):
+    def make_move(self, player: int, move: list) -> list:
         self.board = self.lib.make_move(self.board, player, *move)
         self.cur_player = -player
 
@@ -70,13 +70,13 @@ class Othello:
             self.cur_player = player
         return self.board
     
-    def is_game_over(self):
+    def is_game_over(self) -> int:
         return self.lib.is_game_over(self.board)
     
-    def get_winner(self):
+    def get_winner(self) -> int:
         return self.lib.get_winner(self.board)
     
-    def get_possible_moves(self, player):
+    def get_possible_moves(self, player: int) -> list:
         moves = self.lib.get_possible_moves(self.board, player)
         #Check if moves is null
         if moves[0][0] == -1:
@@ -87,14 +87,14 @@ class Othello:
         # Convert the 2D array of moves into a list of tuples
         return moves, count
     
-    def get_score(self):
+    def get_score(self) -> list:
         s = self.lib.get_score(self.board)
         return [s[0], s[1]]
     
-    def tiles_to_flip(self, player, *move):
+    def tiles_to_flip(self, player: int, *move) -> list:
         return self.lib.tiles_to_flip(self.board, player, *move)
     
-    def print_board(self):
+    def print_board(self) -> None:
         tile_map = {-1: "⚫", 0: "  ", 1: "⚪"}
 
         #Print the board, score, and number grid along sides
@@ -110,12 +110,12 @@ class Othello:
         print("Score:", self.get_score())
         print("Current Player:", "White" if self.cur_player == 1 else "Black")
         
-    def print_moves(self, player):
+    def print_moves(self, player: int) -> None:
         moves, count = self.get_possible_moves(player)
         for i in range(count):
             print("Move", i, ":", moves[i][0], moves[i][1])
     
-    def get_fen(self):
+    def get_fen(self) -> str:
         fen = ""
         for i in range(8):
             for j in range(8):
